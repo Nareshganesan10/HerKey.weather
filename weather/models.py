@@ -12,8 +12,13 @@ class CityModel(models.Model):
     
 
 class CustomUser(AbstractUser):
-    user_address = models.TextField()
-    location_searched = models.ForeignKey(CityModel,on_delete=models.CASCADE, null=True)
+    user_city = models.TextField()
+    
+
+class SearchModel(models.Model):
+    location_searched = models.TextField(null=True)
+    username = models.CharField(max_length=50, null=False)
+    searched_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.username
+        return self.username, self.location_searched, self.searched_at

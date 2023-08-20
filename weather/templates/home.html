@@ -2,7 +2,7 @@
 {% block content %}
 {% if request.user.is_authenticated %}
 {% if api %}
-    {% if api != 'error' %}
+    {% if api != 'error' or status_code != 400 %}
     <div class="alert alert-success" role="alert">
         <h3 class="alert-heading">Temperature(C): {{api.current.temp_c}}</h3>
         <p>{{api.location.name}}</p>
@@ -24,6 +24,13 @@
 {% endif %}
 <div class="alert alert-success" role="alert">
     <h4 class="alert-heading">Get the Temperature, Condition and Air quality of any city around the world...</h4>
+    <h4>
+        <form action="{% url 'home' %}" class="d-flex" role="search" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="City" value="my_city">
+            <button class="btn btn-outline-success" type="submit">My City</button>
+        </form>
+    </h4>
     <form action="{% url 'home' %}" class="d-flex" role="search" method="POST">
         {% csrf_token %}
         <input class="form-control me-2" type="search" placeholder="City" aria-label="Search" name="City" id="cityInput" list="citySuggestions">
