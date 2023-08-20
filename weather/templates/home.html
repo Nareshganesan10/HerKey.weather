@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block content %}
+{% if request.user.is_authenticated %}
+{% if api %}
+    {% if api != 'error' %}
+    <div class="alert alert-success" role="alert">
+        <h3 class="alert-heading">Temperature(C): {{api.current.temp_c}}</h3>
+        <p>{{api.location.name}}</p>
+        <p>{{api.location.region}}</p>
+        <p>{{api.location.country}}</p>
+        <p>Temperature(F): {{api.current.temp_f}}</p>
+        <p>Condition: {{api.current.condition.text}}</p>
+        <h5>Air quality:</h5>
+        <p>Carbon monoxide: {{api.current.air_quality.co}}</p>
+        <p>Nitrogen Dioxide: {{api.current.air_quality.no2}}</p>
+        <hr>
+        <p class="mb-0">{{api.location.localtime}}</p>
+    </div>
+    {% else %}
+    <div class="alert alert-success" role="alert">
+        <h4 class="alert-heading">please Enter a valid city name or There is an error in the API</h4>
+    </div>
+    {% endif %}
+{% endif %}
+<div class="alert alert-success" role="alert">
+    <h4 class="alert-heading">Get the Temperature, Condition and Air quality of any city around the world...</h4>
+    <form action="{% url 'home' %}" class="d-flex" role="search" method="POST">
+        {% csrf_token %}
+        <input class="form-control me-2" type="search" placeholder="City" aria-label="Search" name="City" id="cityInput" list="citySuggestions">
+        <datalist id="citySuggestions">
+            {% for city in city_list %}
+                <option value="{{ city.city }}">{{ city.city }}</option>
+            {% endfor %}
+        </datalist>
+        <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
+</div>
+{% else %}
+<div class="col-12">
+    <div class="container">
+    </br>
+    <h1>Login before posting anything</h1>
+  </br>
+    <a class="btn btn-success" href='{% url 'signin' %}' role="button">Login</a>
+</div>
+</div>
+{% endif %}
+{% endblock content %}
