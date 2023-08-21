@@ -1,3 +1,4 @@
 from django.contrib import admin
+from weather.models import CustomUser, SearchModel, CityModel
 
-# Register your models here.
+admin.site.register(CustomUser)
