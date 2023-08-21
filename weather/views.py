@@ -59,7 +59,7 @@ def signin(request):
         password = request.POST.get('password')
         
         # Authenticate user with provided username and password
-        user = authenticate(request, username=username, password=password)
+        user = authenticate(username=username, password=password)
                 
         if user is not None:
             # If authentication is successful, log the user in and manage session variables
