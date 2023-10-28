@@ -52,7 +52,6 @@ def home(request):
 
 
 @api_view(['GET', 'POST'])
-@ensure_csrf_cookie
 def signin(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -76,7 +75,7 @@ def signin(request):
     return render(request, "signin.html", {})
 
 
-@api_view(['GET', 'POST'])
+@api_view(['POST'])
 @ensure_csrf_cookie
 def signup(request):
     """
@@ -102,7 +101,7 @@ def signup(request):
                 messages.success(request, "Account successfully created")
 
                 # Authenticate and log in the user
-                new_user = authenticate(request, username=username, password=password)
+                new_user = authenticate(username=username, password=password)
                 if new_user is not None:
                     login(request, new_user)
                     messages.success(request, "Logged in")
