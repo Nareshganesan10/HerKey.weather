@@ -34,6 +34,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://herkey-weather-1.onrender.com',
+]
+
 
 # Application definition
 
