@@ -48,6 +48,7 @@ def home(request):
         
         # Render the weather data along with city list and user information
         return render(request, "home.html", { "api": api, "city_list": city_list, "user": request.user})
+    return Response("Retunedn home")
 
 
 
