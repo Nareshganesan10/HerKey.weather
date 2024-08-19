@@ -76,7 +76,7 @@ def signin(request):
     return render(request, "signin.html", {})
 
 
-@api_view(['POST'])
+@api_view(['GET','POST'])
 @ensure_csrf_cookie
 def signup(request):
     """
