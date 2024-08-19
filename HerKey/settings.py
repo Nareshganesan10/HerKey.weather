@@ -86,12 +86,8 @@ WSGI_APPLICATION = 'HerKey.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'HerKey.weather',
-        'USER': 'postgres',
-        'PASSWORD': 'mrrobot',
-        'HOST': 'localhost',
-        'POST': '5432',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
