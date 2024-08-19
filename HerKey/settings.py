@@ -32,7 +32,7 @@ SECRET_KEY = 'django-insecure-7h1aji+*xqpwo5uyji9$pngic7#hf-q=#+0h2&5x4m9&@(aw+l
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['herkey-weather-1.onrender.com']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
